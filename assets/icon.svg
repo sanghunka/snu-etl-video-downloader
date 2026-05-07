@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="#003876">
+  <!-- Arrow shaft -->
+  <rect x="50" y="16" width="28" height="44" />
+  <!-- Arrow head -->
+  <polygon points="36,60 92,60 64,92" />
+  <!-- Bottom bar -->
+  <rect x="28" y="100" width="72" height="12" rx="4" />
+</svg>

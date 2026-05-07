@@ -1,0 +1,384 @@
+/**
+ * 1.공통
+ */
+ #doc-player-container {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	position: relative;
+}
+
+#doc-player { 
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+
+.page-container {
+	display: block;
+	position: relative;
+	float: left;
+}
+
+.player-mode-pdf .page-container {
+	background-size: cover;
+	background-clip: content-box;
+	background-repeat: no-repeat;
+	background-color: white;
+}
+
+.player-mode-image .page-background {
+	position: absolute;
+	background-color: white;
+}
+
+.player-mode-image .page-container img {
+	display: block;
+	position: absolute;
+}
+
+.bundle-container {
+	display: block;
+	float: left;
+}
+
+.top-margin-for-scroll-mode {
+	width: 1px;
+	display: block;
+}
+
+.canvas {
+	position: absolute;
+}
+
+.text-layer {
+	position: absolute;
+}
+
+/* PDF.js에서 제공하는 viewer.css 에서 가져온 내용 */
+
+.text-layer {
+	position: absolute;
+	text-align: initial;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	opacity: 0.2;
+	line-height: 1;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	text-size-adjust: none;
+
+	-webkit-user-select: text;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	-o-user-select: text;
+	user-select: text;
+}
+
+.text-layer span {
+	-webkit-user-select: text;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	-o-user-select: text;
+	user-select: text;
+}
+
+.text-layer span,
+.text-layer br {
+	color: transparent;
+	position: absolute;
+	white-space: pre;
+	cursor: text;
+	transform-origin: 0% 0%;
+}
+
+/* Only necessary in Google Chrome, see issue 14205, and most unfortunately
+* the problem doesn't show up in "text" reference tests. */
+.text-layer span.markedContent {
+	top: 0;
+	height: 0;
+}
+
+.text-layer .highlight {
+	margin: -1px;
+	padding: 1px;
+	background-color: rgba(180, 0, 170, 1);
+	border-radius: 4px;
+}
+
+.text-layer .highlight.appended {
+	position: initial;
+}
+
+.text-layer .highlight.begin {
+	border-radius: 4px 0 0 4px;
+}
+
+.text-layer .highlight.end {
+	border-radius: 0 4px 4px 0;
+}
+
+.text-layer .highlight.middle {
+	border-radius: 0;
+}
+
+.text-layer .highlight.selected {
+	background-color: rgba(0, 100, 0, 1);
+}
+
+.text-layer ::-moz-selection {
+	background: rgba(0, 0, 255, 1);
+}
+
+.text-layer ::selection {
+	background: rgba(0, 0, 255, 1);
+}
+
+/* Avoids https://github.com/mozilla/pdf.js/issues/13840 in Chrome */
+.text-layer br::-moz-selection {
+	background: transparent;
+}
+.text-layer br::selection {
+	background: transparent;
+}
+
+.text-layer .endOfContent {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 100%;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+	cursor: default;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.text-layer .endOfContent.active {
+	top: 0;
+}
+
+.doc-page-loading-icon-container {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: url('./images/loading_icon_bg.png') center no-repeat;
+}
+
+.doc-page-loading-icon {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: url('./images/loading_icon.gif') center no-repeat;
+}
+
+.unibook{
+	z-index: 0;
+}
+
+.unibook .page{
+	-webkit-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	-moz-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	-ms-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	-o-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+.unibook .gradient.odd {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:-webkit-gradient(linear, right top, left top, color-stop(0.95, rgba(0,0,0,0)), color-stop(1, rgba(0,0,0,0.15)));
+	background-image:-webkit-linear-gradient(right,rgba(0,0,0,0) 95%, rgba(0,0,0,0.15) 100%);
+	background-image:-moz-linear-gradient(right, rgba(0,0,0,0) 95%, rgba(0,0,0,0.15) 100%);
+	background-image:-ms-linear-gradient(right, rgba(0,0,0,0) 95%, rgba(0,0,0,0.15) 100%);
+	background-image:-o-linear-gradient(right, rgba(0,0,0,0) 95%, rgba(0,0,0,0.15) 100%);
+	background-image:linear-gradient(right, rgba(0,0,0,0) 95%, rgba(0,0,0,0.15) 100%);
+	z-index:50;
+}
+
+.unibook .gradient.even {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:-webkit-gradient(linear, left top, right top, color-stop(0.95, rgba(0,0,0,0)), color-stop(1, rgba(0,0,0,0.2)));
+	background-image:-webkit-linear-gradient(left,rgba(0,0,0,0) 95%, rgba(0,0,0,0.2) 100%);
+	background-image:-moz-linear-gradient(left, rgba(0,0,0,0) 95%, rgba(0,0,0,0.2) 100%);
+	background-image:-ms-linear-gradient(left, rgba(0,0,0,0) 95%, rgba(0,0,0,0.2) 100%);
+	background-image:-o-linear-gradient(left, rgba(0,0,0,0) 95%, rgba(0,0,0,0.2) 100%);
+	background-image:linear-gradient(left, rgba(0,0,0,0) 95%, rgba(0,0,0,0.2) 100%);
+	z-index:50;
+}
+
+.unibook .p1 {
+}
+
+.unibook .p2 {
+	background-image: url('./images/ebook_book_covers_white_left.png');
+	background-size:     100% 100%;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;              /* optional, center the image */
+}
+
+.ie8 .unibook .p2 {
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='library/doc-player/dist/images/ebook_book_covers_white_left.png', sizingMethod='scale'";
+}
+
+.ie7 .unibook .p2 {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='library/doc-player/dist/images/ebook_book_covers_white_left.png', sizingMethod='scale');
+}
+
+.unibook .p-2 {
+	background-color: white;
+}
+
+.unibook .p-1 {
+	background-image: url('./images/ebook_book_covers_white_right.png');
+	background-size: 100% 100%;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;              /* optional, center the image */
+}
+
+.ie8 .unibook .p-1 {
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='library/doc-player/dist/images/ebook_book_covers_white_right.png', sizingMethod='scale'";
+}
+
+.ie7 .unibook .p-1 {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='library/doc-player/dist/images/ebook_book_covers_white_right.png', sizingMethod='scale');
+}
+
+.unibook .p-0{
+}
+
+.unibook .hard{
+	background-color:white;
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+	-ms-box-shadow:none;
+	box-shadow:none;
+
+}
+
+.unibook .page-wrapper{
+	-webkit-perspective:2000px;
+	-moz-perspective: 2000px;
+	-ms-perspective: 2000px;
+	perspective: 2000px;
+}
+
+.unibook .ownsize{
+	background-color:white;
+	overflow:hidden;
+}
+
+.unibook .depth{
+	background-image:url('./images/pages-depth.png');
+	position:absolute;
+	top:7px;
+	width:16px;
+}
+
+.unibook .front-cover{
+	background-image:url('./images/ebook_book_covers_white_front.png');
+	background-size: 100% 100%;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;              /* optional, center the image */
+}
+
+.ie8 .unibook .front-cover {
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='library/doc-player/dist/images/ebook_book_covers_white_front.png', sizingMethod='scale'";
+}
+
+.ie7 .unibook .front-cover {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='library/doc-player/dist/images/ebook_book_covers_white_front.png', sizingMethod='scale');
+}
+
+.unibook .front-cover-wrapper {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.unibook .cover-title {
+	width: 57%;
+	max-height: 70px;
+	margin-top: 17%;
+	margin-left: 21.5%;	
+	font-size: 26px;
+	color: #0f171b;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', 'Gulim';
+	text-shadow: 1px 1px rgba(255, 255, 255, 0.3);
+	text-align: center;
+	overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.unibook .cover-title-underbar {
+	width: 57%;
+	height: 2.3%;
+	margin-left: 21.5%;	
+	border-bottom: 1px solid black;
+
+}
+
+.unibook .cover-author {
+	width: 57%;
+	margin-top: 2.3%;
+	margin-left: 21.5%;	
+	font-size: 18px;
+	color: #0f171b;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', 'Gulim';
+	text-shadow: 1px 1px rgba(255, 255, 255, 0.2);
+	text-align: center;
+	overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.unibook .cover-logo{
+	width: 57%;
+	height: 9.7%;
+	position: absolute;
+	bottom: 6.1%;
+	left: 21.5%;
+	background-image:url('./images/ebook_front_logo.png');
+	background-size: inherit;            
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+.unibook .front-side .depth{
+	left:4px;
+	background-position:0 0;
+}
+
+.unibook .back-side .depth{
+	right:4px;
+	background-position:right 0;
+}
+
+.ebook-prev-btn{
+	background: url('./images/icon_ebookmode_slide_prev.png') no-repeat 0px 0px;
+	float: left;
+	width: 70px;
+	height: 70px;
+	vertical-align: middle;
+}
+
+.ebook-next-btn{
+	background: url('./images/icon_ebookmode_slide_next.png') no-repeat 0px 0px;
+	float: right;
+	width: 70px;
+	height: 70px;
+}

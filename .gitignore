@@ -1,0 +1,5 @@
+.DS_Store
+*.crdownload
+*.mp4
+etl_debug.md
+.claude/

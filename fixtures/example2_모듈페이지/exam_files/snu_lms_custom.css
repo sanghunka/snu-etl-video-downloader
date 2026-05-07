@@ -1,0 +1,117 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap');
+
+html, body {
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+}
+:root{
+    --ic-snb-menu-link: #0F0F70;
+    --ic-snb-menu-add-link: #7D684D;
+}
+.ic-Layout-wrapper{ max-width: none !important;}
+
+.ic-app-course-menu #section-tabs > .section > a {
+    color:var(--ic-snb-menu-link);
+}
+
+/* 강의 출결 LTI */
+.ic-app-course-menu #section-tabs > .section > a.context_external_tool_48,
+/* 수강생 알림 LTI */
+.ic-app-course-menu #section-tabs > .section > a.context_external_tool_50,
+/* My CMS LTI */
+.ic-app-course-menu #section-tabs > .section > a.context_external_tool_52,
+/* 종합 성적부 LTI */
+.ic-app-course-menu #section-tabs > .section > a.context_external_tool_17,
+/* 주차학습(모듈) LTI */
+.ic-app-course-menu #section-tabs > .section > a.context_external_tool_83,
+/* 게시판 LTI */
+.ic-app-course-menu #section-tabs > .section > a.context_external_tool_85,
+/* 조교/청강생 승인 LTI */
+.ic-app-course-menu #section-tabs > .section > a.context_external_tool_93 {
+    color:var(--ic-snb-menu-add-link);
+}
+
+/**
+ * START: 퀴즈 참여 후 수정 시 상단 안내 문구 관련 스타일 
+ */
+body.quizzes #quiz_edit_wrapper #student_submissions_warning {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    color: #C74B4B;
+    background-color: #F1D2D2;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+body.quizzes #quiz_edit_wrapper #student_submissions_warning p {
+    margin: 0;
+}
+
+body.quizzes #quiz_edit_wrapper #student_submissions_warning > i.icon-warning::before {
+    font-size: 20px;
+}
+/**
+ * END: 퀴즈 참여 후 수정 시 상단 안내 문구 관련 스타일 
+ */
+
+#help-notion-nav button.active {
+    background: #0f0f70 !important;
+    color: #fff;
+    font-weight: bold;
+    border-color: #0f0f70 !important;
+}
+
+/* 공지 반응형 */
+@media screen and (max-width: 480px) {
+  /** 모바일 세로 */
+
+.MYpOQ_bGBk.MYpOQ_UeJS{
+ margin: 0 0 0 0 !important;
+}
+.cGJLp_crdn{
+ gap:8px;
+}
+.ic-item-row{
+ flex-wrap:wrap;
+ justify-content: flex-start;
+ gap: 4px;
+}
+.ic-item-row__content-col,
+.ic-item-row__meta-col{
+ width:100%;
+}
+.ic-item-row__meta-col .ic-item-row__meta-content .ic-item-row__meta-content-heading,.ic-item-row__meta-content-timestamp{
+ display:inline-block;
+}
+
+}
+
+/**
+* START: 퀴즈 응시 버튼 관련 스타일
+ * 퀴즈 응시 버튼 초기 숨김 + 2초 뒤 강제 표시
+*/
+@keyframes xnForceShowQuizButton {
+    0% { opacity: 0; visibility: visible; pointer-events: none; }
+    99% { opacity: 0; visibility: visible; pointer-events: none; }
+    100% { opacity: 1; visibility: visible; pointer-events: auto; }
+}
+
+#take_quiz_link:not(.xn-locked-quiz-btn):not(.xn-unlocked-quiz-btn),
+.take_quiz_button a:not(.xn-locked-quiz-btn):not(.xn-unlocked-quiz-btn),
+div.take_quiz_button a:not(.xn-locked-quiz-btn):not(.xn-unlocked-quiz-btn) {
+    opacity: 0;
+    visibility: visible !important;
+    pointer-events: none;
+    animation: xnForceShowQuizButton 2s forwards !important;
+}
+/**
+ * END: 퀴즈 응시 버튼 관련 스타일
+*/
+
+
+#quiz_edit_wrapper #xn-auto-rescore-message {
+    margin: 0;
+    line-height: 1.8;
+}
